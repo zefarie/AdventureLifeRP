@@ -1,7 +1,7 @@
 {
-    "name": "AdventureLifeRP-Launcher",
-    "preductname": "ADVLauncher",
-    "version": "1.0.0",
+    "name": "Adventure Life RP",
+    "preductname": "Adventure Life RP",
+    "version": "1.0.1",
     "description": "Launcher Mincraft pour le serveur Selvania",
     "main": "src/app.js",
     "author": {

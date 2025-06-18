@@ -7,11 +7,32 @@
 
 .login-tabs {
     position: absolute;
-    padding: 15px;
+    padding: 25px 30px;
     background: var(--background);
-    border-radius: 15px;
+    border-radius: 20px;
     text-align: center;
     min-width: 40%;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    transition: all 0.4s ease;
+    animation: slideIn 0.5s ease-out;
+}
+
+.login-tabs:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(0.9);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .login-home,
@@ -22,29 +43,149 @@
 }
 
 .login-text {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+    margin-bottom: 25px;
+    font-weight: 500;
+    color: var(--color);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .connect,
 .cancel {
-    background: none;
+    background: transparent;
     color: var(--color);
-    border: solid 4px var(--element-color);
-    border-radius: 10px;
-    padding: 0.3rem 4rem;
+    border: 3px solid var(--element-color);
+    border-radius: 12px;
+    padding: 0.6rem 4rem;
     font-size: inherit;
     font-weight: bold;
     margin: 15px 10px;
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.connect::before,
+.cancel::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.connect:hover,
+.cancel:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    border-color: var(--color);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.connect:hover::before,
+.cancel:hover::before {
+    left: 100%;
+}
+
+.connect:active,
+.cancel:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.input-login {
+    margin: 20px 0;
 }
 
 .input-login .email,
 .input-login .password,
 .A2F {
     color: var(--color);
-    background: none;
-    border: solid 2px var(--element-color);
-    border-radius: 30px;
-    width: 50%;
-    padding: 0.4rem 1rem;
-    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 2px solid var(--element-color);
+    border-radius: 25px;
+    width: 60%;
+    padding: 0.7rem 1.5rem;
+    margin: 8px 0;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    outline: none;
+    backdrop-filter: blur(5px);
+}
+
+.input-login .email::placeholder,
+.input-login .password::placeholder,
+.A2F::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+    font-style: italic;
+}
+
+.input-login .email:focus,
+.input-login .password:focus,
+.A2F:focus {
+    border-color: var(--color);
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+    width: 65%;
+}
+
+.input-login .email:hover,
+.input-login .password:hover,
+.A2F:hover {
+    border-color: var(--element-color);
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.login-tabs > * {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+}
+
+.login-tabs > *:nth-child(1) { animation-delay: 0.1s; }
+.login-tabs > *:nth-child(2) { animation-delay: 0.2s; }
+.login-tabs > *:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.connect {
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(0, 255, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 255, 0, 0);
+    }
+}
+
+.input-login .email:focus,
+.input-login .password:focus,
+.A2F:focus {
+    animation: typing 0.3s ease-out;
+}
+
+@keyframes typing {
+    from { width: 60%; }
+    to { width: 65%; }
 }

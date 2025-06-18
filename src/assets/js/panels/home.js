@@ -336,13 +336,26 @@ class Home {
         });
     }
 
+    /**
+     * Convertit une date en objet { year, month, day }.
+     * Si la date est absente ou invalide, renvoie des chaînes vides.
+     */
     getdate(e) {
-        let date = new Date(e)
-        let year = date.getFullYear()
-        let month = date.getMonth() + 1
-        let day = date.getDate()
-        let allMonth = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre']
-        return { year: year, month: allMonth[month - 1], day: day }
+        if (!e) return { year: '', month: '', day: '' }          // Pas de date fournie
+        const date = new Date(e)
+        if (isNaN(date.getTime())) return { year: '', month: '', day: '' } // Date invalide
+
+        const allMonth = [
+            'janvier', 'février', 'mars', 'avril', 'mai', 'juin',
+            'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'
+        ]
+
+        const year  = date.getFullYear()
+        const day   = date.getDate()
+        const month = allMonth[date.getMonth()] // Index 0-11
+
+        return { year, month, day }
     }
+    /* ----------------------------------------------------------------------- */
 }
 export default Home;
